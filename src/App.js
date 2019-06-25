@@ -28,7 +28,6 @@ class App extends Component {
         <div className="container">
           <Users loading={loading} users={users} />
         </div>
-        <UserItem />
       </div>
     );
   }

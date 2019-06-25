@@ -27,6 +27,8 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false })
   }
 
+  clearUsers = () => this.setState({ users: [] })
+
   render() {
     const { loading, users } = this.state
 
@@ -34,7 +36,7 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
-          <Search searchUsers={this.searchUsers} />
+          <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} users={users} />
           <Users loading={loading} users={users} />
         </div>
       </div>

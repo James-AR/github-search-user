@@ -20,6 +20,7 @@ export class Search extends Component {
                     <input type="text" name="text" placeholder="Search Users.." value={this.state.text} onChange={this.onChange}/>
                     <input type="submit" value="Search" className="btn btn-dark btn-block" />
                 </form>
+                {this.props.users.length > 0 ? <button className="btn btn-light btn-block" onClick={this.props.clearUsers}>Clear</button> : null }
             </div>
         )
     }

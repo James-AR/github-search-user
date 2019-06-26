@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/layout/Navbar'
 import Users from './components/users/Users'
 import Search from './components/users/Search'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom' 
 import axios from 'axios'
 import Alert from './components/layout/Alert'
 
@@ -41,18 +42,20 @@ class App extends Component {
     const { loading, users } = this.state
 
     return (
-      <div className="App">
-        <Navbar />
-        <div className="container">
-          <Alert alert={this.state.alert} />
-          <Search searchUsers={this.searchUsers} 
-          clearUsers={this.clearUsers} 
-          users={users} 
-          setAlert={this.setAlert}
-          />
-          <Users loading={loading} users={users} />
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="container">
+            <Alert alert={this.state.alert} />
+            <Search searchUsers={this.searchUsers} 
+            clearUsers={this.clearUsers} 
+            users={users} 
+            setAlert={this.setAlert}
+            />
+            <Users loading={loading} users={users} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

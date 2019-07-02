@@ -1,14 +1,18 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Repos from '../repos/Repos'
+import GithubContext from '../../context/github/githubContext'
 
-const User = ({ user, getUser, getUserRepos, repos, match }) => {
+const User = ({ getUserRepos, repos, match }) => {
+    const githubContext = useContext(GithubContext)
+
+    const { getUser, user, loading } = githubContext
+
     useEffect(() => {
         getUser(match.params.login)
         getUserRepos(match.params.login)
         //eslint-disable-next-line
     }, [])
-
     
     const { name, avatar_url, location, bio, blog, 
         login, html_url, company, public_gists, followers, 

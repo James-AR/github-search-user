@@ -9,33 +9,26 @@ import axios from 'axios'
 import GithubState from './context/github/GithubState'
 import Alert from './components/layout/Alert'
 import About from './components/pages/About'
+import { SEARCH_USERS } from './context/types';
 
 const App = () => {
-  const [users, setUsers] = useState([])
-  const [user, setUser] = useState({})
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState(null)
   const [repos, setRepos] = useState([])
 
-  useEffect(() => {
+  /* useEffect(() => {
     setLoading(true)
 
     axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
+    dispatch({
+      type: SEARCH_USERS,
+      payload: res.data
+    })
     .then((res) => {
       setUsers(res.data)
       setLoading(false)
     })
-  }, [])
-
-  const getUser = async (username) => {
-    setLoading(true)
-
-    const res = await axios
-    .get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
-
-    setUser(res.data)
-    setLoading(false)
-  }
+  }, []) */
 
   const getUserRepos = async (username) => {
     setLoading(true)
@@ -66,12 +59,12 @@ const App = () => {
                   <Search
                   setAlert={showAlert}
                   />
-                  <Users loading={loading} users={users} />
+                  <Users />
                 </Fragment>
               )} />
               <Route exact path='/about' component={About} />
               <Route exact path='/user/:login' render={props => (
-                <User { ...props } getUser={getUser} getUserRepos={getUserRepos} repos={repos} user={user} loading={loading} />
+                <User { ...props } getUserRepos={getUserRepos} repos={repos} />
               )} />
             </Switch>
           </div>

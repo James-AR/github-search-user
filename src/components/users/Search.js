@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
 import GithubContext from '../../context/github/githubContext'
 
-const Search = ({ users, clearUsers, setAlert }) => {
-    const gitHubContext = useContext(GithubContext)
+const Search = ({ users, setAlert }) => {
+    const githubContext = useContext(GithubContext)
 
     const [text, setText] = useState('')
 
@@ -13,7 +13,7 @@ const Search = ({ users, clearUsers, setAlert }) => {
         if(text === '') {
             setAlert('Please enter something', 'light')
         } else {
-            gitHubContext.searchUsers(text)
+            githubContext.searchUsers(text)
             setText('' )
         }
     }
@@ -24,7 +24,7 @@ const Search = ({ users, clearUsers, setAlert }) => {
                     <input type="text" name="text" placeholder="Search Users.." value={text} onChange={onChange}/>
                     <input type="submit" value="Search" className="btn btn-dark btn-block" />
                 </form>
-                {users.length > 0 ? <button className="btn btn-light btn-block" onClick={clearUsers}>Clear</button> : null }
+                {githubContext.users.length > 0 ? <button className="btn btn-light btn-block" onClick={githubContext.clearUsers}>Clear</button> : null }
             </div>
         )
 }

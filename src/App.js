@@ -47,8 +47,6 @@ const App = () => {
     setLoading(false)
   }
 
-  const clearUsers = () => setUsers([])
-
   const showAlert = (msg, type) => {
     setAlert({ msg, type });
 
@@ -66,8 +64,6 @@ const App = () => {
               <Route exact path='/' render={props => (
                 <Fragment>
                   <Search
-                  clearUsers={clearUsers} 
-                  users={users} 
                   setAlert={showAlert}
                   />
                   <Users loading={loading} users={users} />
